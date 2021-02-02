@@ -1,0 +1,6 @@
+api.micloud.xiaomi.net
+sgpac.account.xiaomi.com
+connect.rom.miui.com
+update.miui.com
+zgwlc.zagreb.hr
+magisk-modules-repo.github.io
