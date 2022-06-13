@@ -1,6 +1,0 @@
-# Test hosts file
-0.0.0.0 aaa.bbb1.ccc 
-0.0.0.0 aaa.bbb2.ccc 
-0.0.0.0 aaa.bbb3.ccc 
-0.0.0.0 aaa.bbb4.ccc 
-0.0.0.0 aaa.bbb5.ccc 
