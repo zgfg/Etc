@@ -11,7 +11,8 @@ Select and systemlessly debloat preinstalled system apps. Supporting up to Syste
 ### Coffee
 If this module is useful for you, please support development by donating a
 [coffe](https://www.paypal.me/ipenzar)
-[test](https://raw.githubusercontent.com/zgfg/Etc/main/FUNDING.html)
+[test1](https://raw.githubusercontent.com/zgfg/Etc/main/FUNDING.html)
+[test2](https://github.com/zgfg/Etc/main/FUNDING.html)
 
 #### Source
 
