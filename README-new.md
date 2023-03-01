@@ -8,8 +8,7 @@ Select and systemlessly debloat preinstalled system apps. Supporting up to Syste
 
 OP instructions at [XDA](https://forum.xda-developers.com/mi-9t/how-to/magisk-module-systemless-debloater-t4180083)
 
-[Wiki](https://github.com/mModule/guide_sDebloater/wiki/ConfigScript) by @ipdev99 
-And his [Examples](https://github.com/mModule/guide_sDebloater/wiki/CommunityList) of apps that can be debloated (AOSP, Google, Xiaomi, OOpt, LineageOS)
+[Wiki](https://github.com/mModule/guide_sDebloater/wiki/ConfigScript) pages by @ipdev99 (instructions for SystemlessDebloater.cfg) and his [Examples](https://github.com/mModule/guide_sDebloater/wiki/CommunityList) of apps that can be debloated (AOSP, Google, Xiaomi, OOpt, LineageOS)
 
 https://github.com/mModule/guide_sDebloater/commits?author=ipdev99
 
