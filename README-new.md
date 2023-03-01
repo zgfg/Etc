@@ -7,7 +7,7 @@ Since the version **v1.5.1**, `SystemlessDebloater` module supports a new `Syste
 Select and systemlessly debloat preinstalled system apps. Supporting up to **System As Root (SAR)**, **Dynamic partitions** and **Android 13**. Module must be installed through **Magisk app**, not TWRP - please read:
 
 - [OP instructions](https://forum.xda-developers.com/mi-9t/how-to/magisk-module-systemless-debloater-t4180083) at XDA
-- [Wiki pages](https://github.com/mModule/guide_sDebloater/wiki/ConfigScript) by @ipdev99 (instructions for `SystemlessDebloater.cfg`)
+- [Wiki pages](https://github.com/mModule/guide_sDebloater/wiki/ConfigScript) by @ipdev @ XDA with  instructions for `SystemlessDebloater.cfg`
 - His [Examples](https://github.com/mModule/guide_sDebloater/wiki/CommunityList) of apps that can be debloated (**Android**, **Google**, **Oppo**, **Samsung**, **Xiaomi**, **LineageOS**)
 
 https://github.com/mModule/guide_sDebloater/commits?author=ipdev99
