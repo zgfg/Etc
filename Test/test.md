@@ -8,6 +8,6 @@ This also opens as a [raw file](https://raw.githubusercontent.com/zgfg/Etc/main/
 
 This [link](https://github.com/zgfg/Etc/main/Test/test.html) or [that](https://github.com/zgfg/Etc/Test/test.html) do not open.
 
-Found a [solution](https://htmlpreview.github.io/?https://github.com/zgfg/Etc/blob/main/Test/test.html//github.com/bartaz/impress.js/blob/master/index.html) thar works.
+Found a [solution](https://htmlpreview.github.io/?https://github.com/zgfg/Etc/blob/main/Test/test.html) that works.
 
 The [external page](https://www.google.com/) opens just fine.
