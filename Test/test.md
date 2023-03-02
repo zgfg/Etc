@@ -4,4 +4,4 @@ How to open an [HTML page](https://github.com/zgfg/Etc/blob/main/Test/test.html)
 
 This one opens as a [raw file](https://github.com/zgfg/Etc/raw/main/Test/test.html), as expected.
 
-This [link](https://github.com/zgfg/Etc/raw/main/Test/test.html) does not work.
+This also opens as a [raw file](https://raw.githubusercontent.com/zgfg/Etc/main/Test/test.html).
