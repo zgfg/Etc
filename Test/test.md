@@ -8,4 +8,4 @@ This also opens as a [raw file](https://raw.githubusercontent.com/zgfg/Etc/main/
 
 This [link](https://github.com/zgfg/Etc/main/Test/test.html) or [that](https://github.com/zgfg/Etc/Test/test.html) do not open.
 
-The [external page](https://google.com) opens just fine.
+The [external page](https://www.google.com/) opens just fine.
