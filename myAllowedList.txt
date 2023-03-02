@@ -8,14 +8,14 @@ connect.rom.miui.com
 update.miui.com
 
 # Magisk
-magisk-modules-repo.github.io
 topjohnwu.github.io
 
 # ZG WiFi
 zgwlc.zagreb.hr
 
-# YouTube,, Twitter
+# YouTube,, Twitter, etc
 s.youtube.com
 t.co
+developers.google.com
 bit.ly
 *.optimizely.com
