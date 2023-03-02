@@ -7,3 +7,5 @@ This one opens as a [raw file](https://github.com/zgfg/Etc/raw/main/Test/test.ht
 This also opens as a [raw file](https://raw.githubusercontent.com/zgfg/Etc/main/Test/test.html).
 
 This [link](https://github.com/zgfg/Etc/main/Test/test.html) or [that](https://github.com/zgfg/Etc/Test/test.html) do not open.
+
+The [external page](https://google.com) opens just fine.
