@@ -9,7 +9,7 @@ Select and systemlessly debloat preinstalled system apps. Supporting up to Syste
 [OP instructions at XDA](https://forum.xda-developers.com/t/magisk-module-systemless-debloater.4180083/)
 
 ### Coffee
-If this module is useful for you, please support development by donating a [coffee](https://htmlpreview.github.io/?https://github.com/zgfg/Etc/blob/main/.github/PayPal.html)
+If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html))
 
 #### Source
 
