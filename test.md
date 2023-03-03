@@ -4,7 +4,7 @@
 Et cetera.
 
 ### Coffee
-If this project is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html) or [_coffee](https://zgfg.github.io/_PayPal.html)
+If this project is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html) or [coffee_](https://zgfg.github.io/PayPal_.html)
 
 #### Copyright (c) zgfg @ xda, 2020-
 
