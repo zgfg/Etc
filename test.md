@@ -7,3 +7,6 @@ Et cetera.
 If this project is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
 
 #### Copyright (c) zgfg @ xda, 2020-
+
+
+https://stackoverflow.com/questions/55226568/how-do-i-make-this-paypal-button-centered-and-bigger#55226666
