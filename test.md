@@ -8,5 +8,5 @@ If this project is useful for you, please support development by donating a [cof
 
 #### Copyright (c) zgfg @ xda, 2020-
 
-
+See:
 https://stackoverflow.com/questions/55226568/how-do-i-make-this-paypal-button-centered-and-bigger#55226666
