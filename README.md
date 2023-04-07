@@ -9,7 +9,7 @@
 If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
 
 
-#### Modules
+#### Magisk modules
 
 [Systemless Debloater - My Repo:](https://github.com/zgfg/SystemlessDebloater)
 
