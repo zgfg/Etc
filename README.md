@@ -1,7 +1,7 @@
-# Systemless Debloater
+# Et cetera
 
 ### Description
-[Et cetera](https://en.m.wikipedia.org/wiki/Et_cetera)
+[Etc](https://en.m.wikipedia.org/wiki/Et_cetera)
 
 ### Coffee
 If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
