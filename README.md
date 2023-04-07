@@ -4,12 +4,13 @@
 ### [Etc](https://en.m.wikipedia.org/wiki/Et_cetera) description
 
 
+### [Coffee](https://zgfg.github.io/PayPal.html)
+
 ### Coffee
 If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
 
 
-#### 
-[Magisk](https://github.com/topjohnwu/Magisk) modules
+### [Magisk](https://github.com/topjohnwu/Magisk) modules
 
 [Systemless Debloater - My Repo:](https://github.com/zgfg/SystemlessDebloater)
 
