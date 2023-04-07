@@ -1,15 +1,15 @@
 # Et cetera
 
 
-### Description
-[Etc](https://en.m.wikipedia.org/wiki/Et_cetera)
+### [Etc](https://en.m.wikipedia.org/wiki/Et_cetera) description
 
 
 ### Coffee
 If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
 
 
-#### Magisk modules
+#### 
+[Magisk](https://github.com/topjohnwu/Magisk) modules
 
 [Systemless Debloater - My Repo:](https://github.com/zgfg/SystemlessDebloater)
 
@@ -51,4 +51,4 @@ If this module is useful for you, please support development by donating a [coff
 ![GitHub All Releases](https://img.shields.io/github/downloads/Magisk-Modules-Alt-Repo/ToyBox-Ext/total?label=Total%20Downloads%20%28All%20Releases%29&style=plastic)
 
 
-#### Copyright (c) zgfg @ xda, 2023-
+#### Copyright (c) zgfg @ xda, 2020-
