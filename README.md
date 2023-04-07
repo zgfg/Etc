@@ -6,9 +6,6 @@
 
 ### [Coffee](https://zgfg.github.io/PayPal.html)
 
-### Coffee
-If this module is useful for you, please support development by donating a [coffee](https://zgfg.github.io/PayPal.html)
-
 
 ### [Magisk](https://github.com/topjohnwu/Magisk) modules
 
