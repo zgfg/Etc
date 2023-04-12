@@ -52,6 +52,11 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/Magisk-Modules-Alt-Repo/ToyBox-Ext/total?label=Total%20Downloads%20%28All%20Releases%29&style=plastic)
 
 
+[GitHub release (latest by date)](https://img.shields.io/github/v/release/zgfg/SystemlessDebloater?label=Release&style=plastic) 
+[GitHub Release Date](https://img.shields.io/github/release-date/zgfg/SystemlessDebloater?label=Release%20Date&style=plastic)
+
+
+
 #### Copyright (c) zgfg @ xda, 2020-
 <p align="left"> 
 <a href="https://zgfg.github.io/PayPal.html"> <img src="https://img.shields.io/badge/-Donate%20a%20coffee-FFDD00?logo=Buy-me-a-coffee&logoColor=black" alt="Donate a coffee"> </a> 
