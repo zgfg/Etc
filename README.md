@@ -45,6 +45,7 @@
 
 #### Copyright (c) zgfg @ xda, 2020-
 <p align="left">
+<a href="https://forum.xda-developers.com/t/magisk-module-systemless-debloater.4180083"> <img src="https://img.shields.io/badge/XDA-Systemless_Debloater-orange?logo=QuickLook&logoColor=yellow" alt="XDA - Systemless Debloater"></a>
 <a href="https://forum.xda-developers.com/t/magisk-module-systemless-debloater.4180083"> <img src="https://img.shields.io/badge/XDA-Systemless_Debloater-orange" alt="XDA - Systemless Debloater">
-<a href="https://zgfg.github.io/PayPal.html"> <img src="https://img.shields.io/badge/-Donate%20a%20coffee-FFDD00?logo=Buy-me-a-coffee&logoColor=black" alt="Donate a coffee"> </a> 
+<a href="https://zgfg.github.io/PayPal.html"> <img src="https://img.shields.io/badge/-Donate%20a%20coffee-FFDD00?logo=CoffeeScript&logoColor=black" alt="Donate a coffee"> </a> 
 </p>
