@@ -1,13 +1,10 @@
-# Et cetera
+# [Et cetera](https://en.m.wikipedia.org/wiki/Et_cetera)
+
 
 ###
 <p align="left"> 
 <a href="https://forum.xda-developers.com/t/magisk-module-systemless-debloater.4180083"> <img src="https://img.shields.io/badge/XDA_support-Systemless_Debloater-orange" alt="XDA - Systemless Debloater">
-</a> <a href="https://github.com/zgfg/SystemlessDebloater/blob/bd4261023da570ec224a613769412111e31467e9/LICENSE"> <img src="https://img.shields.io/github/license/zgfg/SystemlessDebloater?label=License&logo=gnu" alt="GNU General Public License"></a>
 </p>
-
-
-### [Etc](https://en.m.wikipedia.org/wiki/Et_cetera) description
 
 
 ### [Magisk](https://github.com/topjohnwu/Magisk) modules
