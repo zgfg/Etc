@@ -15,10 +15,9 @@
 ![GitHub Releases](https://img.shields.io/github/downloads/osm0sis/PlayIntegrityFork/latest/total?label=Downloads%20%28Latest%20Release%29&style=plastic)
 ![GitHub All Releases](https://img.shields.io/github/downloads/osm0sis/PlayIntegrityFork/total?label=Total%20Downloads%20%28All%20Releases%29&style=plastic)
 
-#### zgfg @ xda, 2023 <a href="https://github.com/zgfg/Etc"> <img src="https://img.shields.io/badge/Etc-orange?logo=QuickLook&logoColor=yellow" alt="Etc"></a>
+#### zgfg @ xda, 2023 
+<a href="https://github.com/zgfg/Etc"> <img src="https://img.shields.io/badge/Etc-orange?logo=QuickLook&logoColor=yellow" alt="Etc"></a>
 
 <p align="left">
 <a href="https://forum.xda-developers.com/t/magisk-module-systemless-debloater.4180083"> <img src="https://img.shields.io/badge/XDA-Systemless_Debloater-orange?logo=QuickLook&logoColor=yellow" alt="XDA - Systemless Debloater"></a>
-
-<a href="https://github.com/zgfg/Etc"> <img src="https://img.shields.io/badge/Etc-orange?logo=QuickLook&logoColor=yellow" alt="Etc"></a>
 </p>
