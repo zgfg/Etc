@@ -3,7 +3,7 @@
 - Purged versions (frequent rebasing or so) are lost in counting
 - Downloads from XDA, TG or other sources are not included
 
-## [Play Integrity Fix](https://github.com/chiteroman/PlayIntegrityFork/) by chiteroman @ [XDA](https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/)
+## [Play Integrity Fix](https://github.com/chiteroman/PlayIntegrityFix) by chiteroman @ [XDA](https://xdaforums.com/t/module-play-integrity-fix-safetynet-fix.4607985/)
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/chiteroman/PlayIntegrityFix?label=Release&style=plastic) ![GitHub Release Date](https://img.shields.io/github/release-date/chiteroman/PlayIntegrityFix?label=Release%20Date&style=plastic)
 ![GitHub Releases](https://img.shields.io/github/downloads/chiteroman/PlayIntegrityFix/latest/total?label=Downloads%20%28Latest%20Release%29&style=plastic)
