@@ -1,4 +1,4 @@
-## Public live GitHub counters for PIF downloads
+## Public live GitHub counters for Play Integrity Fix downloads
 
 - Purged versions (frequent rebasing or so) are lost in counting
 - Downloads from XDA, TG or other sources are not included
