@@ -64,15 +64,12 @@ function test_yasnac()
   (( hw = 0 )); found=$(cat "$yasnac_xml" | grep "HARDWARE_BACKED")
   [ -n "$found" ] && (( hw = 1 ))
 
-  echo "Pass:$pass Fail:$fail Basic:$basic HW:$hw" | tee -a "$list"
+  echo "Pass:$pass Fail:$fail BASIC:$basic HW:$hw" | tee -a "$list"
   ((( basic + hw != 1 )) || (( pass + fail < 1 ))) && return 0
 
-  (( pass == 0 )) && (( fail = 2 ))
-  (( fail == 0 )) && (( pass = 2 ))
-
   (( pass == 0 )) && return 1
-  (( fail == 1 )) && return 2
-  (( basic == 1 )) && return 3
+  (( fail > 0 )) && return 2
+  (( hw == 0 )) && return 3
   return 4
 }
 
