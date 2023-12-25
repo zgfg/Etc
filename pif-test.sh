@@ -1,104 +1,158 @@
 #!/bin/sh
 
-MAX_DEPTH=4      # Increase for crawling deeper than to sub-sub-sub-sub-folders
-Y_COORD=1000     # Test with decreasing if it fails to automatically kick "Make Play Integrity test" button 
-WAIT_VERDICT=12  # Verdict usually returns in 2-3 seconds, but if you decrease and verdict arrives later, script will miss to read 
+DIR_DEPTH="4"           # Increase for crawling deeper than to sub-sub-sub-sub-folders 
+SPIC_Y_COORD="1000"     # Try with lower y if it fails to automatically kick "Make Play Integrity test" button
+SPIC_WAIT_VERDICT="12"  # Verdict usually returns in 5-6 seconds, but if you decrease and verdict arrives later, script will miss to read
 
-#custom_json=/data/adb/pif.json   # For Chiteroman PI Fix module                   
-custom_json=/data/adb/modules/playintegrityfix/custom.pif.json  # For Osm0sis PI Fork module
+TEST_YASNAC="1"          # Undefined or empty to skip testing SN with YASNAC, else to test SN with YASNAC
+YASNAC_Y_COORD="1250"    # Try with lower y if it fails to automatically kick "Run SafetyNet Check" button
+YASNAC_WAIT_VERDICT="8"  # Verdict usually returns in 3-4seconds, but if you decrease and verdict arrives later, script will miss to read
+
+PIF_JSON="/data/adb/pif.json"                                 # For Chiteroman PI Fix module
+CUSTOM_JSON="/data/adb/modules/playintegrityfix/custom.pif.json"  # For Osm0sis PI Fork module
 
 # Re-program the code beyond this line on your own risk
-path="$1"
-[ -z "$path" ] && path=${0%/*}
+path="$1"; [ -z "$path" ] && path=${0%/*}
 
-list="$path/pif.txt"
-log="$path/pif.log"; xml="$path/pif.xml"
-rm -f "$list"
+list="$path/pif.txt"; rm -f "$list"
+log="$path/pif.log"
+yasnac_xml="$path/yasnac_xml"; spic_xml="$path/spic_xml"
 
-spic=com.henrikherzig.playintegritychecker
-gms=com.google.android.gms.unstable
+spic="com.henrikherzig.playintegritychecker"
+yasnac="rikka.safetynetchecker"
+gms="com.google.android.gms.unstable"
 
-integrities="NO_INTEGRITY MEETS_VIRTUAL_INTEGRITY MEETS_BASIC_INTEGRITY MEETS_DEVICE_INTEGRITY MEETS_STRONG_INTEGRITY"
-
-bak_json="$path/pif.bak"
-cp $custom_json "$bak_json"
+pif_bak="$path/pif.bak"
+rm -f "$pif_bak"; cp $PIF_JSON "$pif_bak" >/dev/null 2>&1
+custom_bak="$path/custom.bak"
+rm -f "$custom_bak"; cp $CUSTOM_JSON "$custom_bak" >/dev/null 2>&1
 
 orient=$(settings get system user_rotation)
 auto_rot=$(settings get system accelerometer_rotation)
 settings put system user_rotation 0
 settings put system accelerometer_rotation 0
 
-function test-json()
+integrities="NO_INTEGRITY MEETS_VIRTUAL_INTEGRITY MEETS_BASIC_INTEGRITY MEETS_DEVICE_INTEGRITY MEETS_STRONG_INTEGRITY"
+
+function test_yasnac()
 {
   local json="$1"
-  cp "$json" $custom_json
-  rm -f "$log"; rm -f "$xml"
+  cp "$json" $PIF_JSON; cp "$json" $CUSTOM_JSON
+  rm -f "$log"; rm -f "$yasnac_xml"
+
+  am start -n $yasnac/$yasnac.main.MainActivity >/dev/null 2>&1
+  sleep 2
+
+  logcat -c
+  killall $gms >/dev/null 2>&1
+  input tap 250 $YASNAC_Y_COORD
+
+  sleep $YASNAC_WAIT_VERDICT
+  uiautomator dump "$yasnac_xml" >/dev/null 2>&1
+  killall $yasnac >/dev/null 2>&1
+  logcat -d | grep PIF/ >> "$log"
+
+  (( pass = 0 )); found=$(cat "$yasnac_xml" | grep "Pass")
+  [ -n "$found" ] && (( pass = 1 ))
+
+  (( fail = 0 )); found=$(cat "$yasnac_xml" | grep "Fail")
+  [ -n "$found" ] && (( fail = 1 ))
+
+  (( basic = 0 )); found=$(cat "$yasnac_xml" | grep "BASIC")
+  [ -n "$found" ] && (( basic = 1 ))
+
+  (( hw = 0 )); found=$(cat "$yasnac_xml" | grep "HARDWARE_BACKED")
+  [ -n "$found" ] && (( hw = 1 ))
+
+  echo "Pass:$pass Fail:$fail Basic:$basic HW:$hw" | tee -a "$list"
+  ((( basic + hw != 1 )) || (( pass + fail < 1 ))) && return 0
+
+  (( pass == 0 )) && (( fail = 2 ))
+  (( fail == 0 )) && (( pass = 2 ))
+
+  (( pass == 0 )) && return 1
+  (( fail == 1 )) && return 2
+  (( basic == 1 )) && return 3
+  return 4
+}
+
+function test_spic()
+{
+  local json="$1"
+  cp "$json" $PIF_JSON; cp "$json" $CUSTOM_JSON
+  rm -f "$log"; rm -f "$yasnac_xml"
 
   am start -n $spic/$spic.MainActivity >/dev/null 2>&1
   sleep 2
-    
+
   logcat -c
   killall $gms >/dev/null 2>&1
-  input tap 250 $Y_COORD
+  input tap 250 $SPIC_Y_COORD
 
-  sleep 12
-  uiautomator dump "$xml" >/dev/null 2>&1
+  sleep $SPIC_WAIT_VERDICT
+  uiautomator dump "$spic_xml" >/dev/null 2>&1
   killall $spic >/dev/null 2>&1
   logcat -d | grep PIF/ >> "$log"
 
-  (( i=0 )); (( val=i++ ))
+  (( i = 0 )); (( val = i++ ))
   for meets in $integrities
   do
-    pass=$(cat $xml | grep $meets)
-    [ ! -z "$pass" ] && echo $meets | tee -a "$list" && (( val=i ))
+    found=$(cat "$spic_xml" | grep $meets)
+    [ -n "$found" ] && echo $meets | tee -a "$list" && (( val = i ))
     (( i++ ))
   done
   return $val
 }
 
-function test-modified-json()
+function test_modified_json()
 {
   local json="$1"
+
+  # Missing a check if FIRST_API_LEVEL is already 25 or lower
   if [ -n "$2" ]; then
-    sed -i 's/"FIRST_API_LEVEL".*/"FIRST_API_LEVEL": "23"/' "$json"
-  else
-    sed -i 's/"FIRST_API_LEVEL".*/"FIRST_API_LEVEL": "25"/' "$json"
+    sed -i 's/"FIRST_API_LEVEL"[^,}]*/"FIRST_API_LEVEL": "25"/' "$json"
+    sed -i 's/"DEVICE_INITIAL_SDK_INT"[^,}]*/"DEVICE_INITIAL_SDK_INT": "25"/' "$json"
   fi
 
-  test-json "$json"
-  return $?
+  test_spic "$json"; (( val = $? ))
+  return $val
 }
 
-function test-dir()
+function test_dir()
 {
-  ls "$1"/*.json 2>/dev/null | while read json
+  local dir="$1"
+  ls "$dir"/*.json 2>/dev/null | while read json
   do
-    ([ ! -n "$json" ] || [ ! -f "$json" ] || [ ! -r "$json" ]) && continue
-
+    ([ -z "$json" ] || [ ! -f "$json" ] || [ ! -r "$json" ]) && continue
     echo "$json" | tee -a "$list"
-    test-json "$json"; val=$?
+    (( val = 0  )); low=""
 
-    (( val>1 )) && (( val<4 )) && test-modified-json "$json" && val=$?
+    if [ -n "$TEST_YASNAC" ]; then
+      test_yasnac "$json"; (( val = $? ))
+      (( val == 2 )) && low="1"
+    fi
 
-#    (( val>1 )) && (( val<4 )) && test-modified-json "$json" 1 && val=$?
+#    (( val < 4 )) &&
+    (( val != 1 )) && test_modified_json "$json" "$low" && (( val = $? ))
+    [ -z "$low" ] && (( val > 1 )) && (( val < 4 )) && test_modified_json "$json" "1" && (( val = $? ))
 
-    (( val>0 )) && (( val<4 )) && rm -f "$json"
-
-  echo "" | tee -a "$list"
+    (( val > 0 )) && (( val < 4 )) && rm -f "$json"
+    echo "" | tee -a "$list"
   done
 }
 
-find "$path" -maxdepth $MAX_DEPTH -type d 2>/dev/null | while read dir
+find "$path" -maxdepth $DIR_DEPTH -type d 2>/dev/null | while read dir
 do
-  ([ ! -n "$dir" ] || [ ! -e "$dir" ]) && continue
-  test-dir "$dir"
+  ([ -z "$dir" ] || [ ! -e "$dir" ]) && continue
+  test_dir "$dir"
 done
 
-mv "$bak_json" $custom_json
+rm -f "$PIF_JSON"; mv "$pif_bak" $PIF_JSON >/dev/null 2>&1
+rm -f "$CUSTOM_JSON"; mv "$custom_bak" $CUSTOM_JSON >/dev/null 2>&1
 killall $gms >/dev/null 2>&1
 
-killall $spic >/dev/null 2>&1
-rm -f "$xml"
+killall $spic >/dev/null 2>&1; killall $yasnac >/dev/null 2>&1
+rm -f "$yasnac_xml"; rm -f "$spic_xml"
 
 settings put system user_rotation "$orient"
 settings put system accelerometer_rotation "$auto_rot"
