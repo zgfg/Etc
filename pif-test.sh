@@ -1,12 +1,12 @@
 #!/bin/sh
 
 DIR_DEPTH="4"           # Increase for crawling deeper than to sub-sub-sub-sub-folders 
-SPIC_Y_COORD="1000"     # Try with lower y if it fails to automatically kick "Make Play Integrity test" button
-SPIC_WAIT_VERDICT="12"  # Verdict usually returns in 5-6 seconds, but if you decrease and verdict arrives later, script will miss to read
+SPIC_Y_COORD="1000"     # Try with lower y if script fails to automatically kick "Make Play Integrity test" button in SPIC
+SPIC_WAIT_VERDICT="12"  # Play Integrity verdict usually returns in 5-6 seconds, but if you decrease and verdict arrives later, script will miss to read
 
-TEST_YASNAC="1"          # Undefined or empty to skip testing SN with YASNAC, else to test SN with YASNAC
-YASNAC_Y_COORD="1250"    # Try with lower y if it fails to automatically kick "Run SafetyNet Check" button
-YASNAC_WAIT_VERDICT="8"  # Verdict usually returns in 3-4seconds, but if you decrease and verdict arrives later, script will miss to read
+TEST_YASNAC="1"          # Set undefined or empty to skip testing SN with YASNAC, or else script will first test SN with YASNAC (to speed-up filtering of JSON files)
+YASNAC_Y_COORD="1250"    # Try with lower y if it fails to automatically kick "Run SafetyNet Check" button in YASNAC
+YASNAC_WAIT_VERDICT="8"  # SafetyNet verdict usually returns in 3-4seconds, but if you decrease and verdict arrives later, script will miss to read
 
 PIF_JSON="/data/adb/pif.json"                                 # For Chiteroman PI Fix module
 CUSTOM_JSON="/data/adb/modules/playintegrityfix/custom.pif.json"  # For Osm0sis PI Fork module
@@ -105,7 +105,7 @@ function test_modified_json()
 {
   local json="$1"
 
-  # Missing a check if FIRST_API_LEVEL is already 25 or lower
+  # Missing a check if FIRST_API_LEVEL was already 25 or lower
   if [ -n "$2" ]; then
     sed -i 's/"FIRST_API_LEVEL"[^,}]*/"FIRST_API_LEVEL": "25"/' "$json"
     sed -i 's/"DEVICE_INITIAL_SDK_INT"[^,}]*/"DEVICE_INITIAL_SDK_INT": "25"/' "$json"
@@ -115,13 +115,30 @@ function test_modified_json()
   return $val
 }
 
+function update_json()
+{
+  local json="$1"
+  
+  build_id=$(cat "$json" | grep "\"BUILD_ID\"")
+  id=$(cat "$json" | grep "\"ID\"")
+  [ -n "$build_id" ] && [ -z "$id" ] && sed -i 's/"BUILD_ID"\([^,}]*\)/"BUILD_ID"\1, "ID"\1/' "$json"
+  [ -n "$id" ] && [ -z "$build_id" ] && sed -i 's/"ID"\([^,}]*\)/"ID" \1, "BUILD_ID" \1/' "$json"
+  
+  api=$(cat "$json" | grep "\"FIRST_API_LEVEL\"")
+  sdk=$(cat "$json" | grep "\"DEVICE_INITIAL_SDK_INT\"")
+  [ -n "$api" ] && [ -z "$sdk" ] && sed -i 's/"FIRST_API_LEVEL"\([^,}]*\)/"FIRST_API_LEVEL" \1, "DEVICE_INITIAL_SDK_INT" \1/' "$json"
+  [ -n "$sdk" ] && [ -z "$api" ] && sed -i 's/"DEVICE_INITIAL_SDK_INT"\([^,}]*\)/"DEVICE_INITIAL_SDK_INT" \1, "FIRST_API_LEVEL" \1/' "$json"
+}
+
 function test_dir()
 {
   local dir="$1"
   ls "$dir"/*.json 2>/dev/null | while read json
   do
     ([ -z "$json" ] || [ ! -f "$json" ] || [ ! -r "$json" ]) && continue
+
     echo "$json" | tee -a "$list"
+	   update_json "$json"
     (( val = 0  )); low=""
 
     if [ -n "$TEST_YASNAC" ]; then
