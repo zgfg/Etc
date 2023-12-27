@@ -22,6 +22,8 @@ spic="com.henrikherzig.playintegritychecker"
 yasnac="rikka.safetynetchecker"
 gms="com.google.android.gms.unstable"
 
+integrities="NO_INTEGRITY MEETS_VIRTUAL_INTEGRITY MEETS_BASIC_INTEGRITY MEETS_DEVICE_INTEGRITY MEETS_STRONG_INTEGRITY"
+
 pif_bak="$path/pif.bak"
 rm -f "$pif_bak"; cp $PIF_JSON "$pif_bak" >/dev/null 2>&1
 custom_bak="$path/custom.bak"
@@ -31,8 +33,6 @@ orient=$(settings get system user_rotation)
 auto_rot=$(settings get system accelerometer_rotation)
 settings put system user_rotation 0
 settings put system accelerometer_rotation 0
-
-integrities="NO_INTEGRITY MEETS_VIRTUAL_INTEGRITY MEETS_BASIC_INTEGRITY MEETS_DEVICE_INTEGRITY MEETS_STRONG_INTEGRITY"
 
 function test_yasnac()
 {
@@ -139,7 +139,7 @@ function test_dir()
 
     echo "$json" | tee -a "$list"
 	   update_json "$json"
-    (( val = 0  )); low=""
+    (( val = 0 )); low=""
 
     if [ -n "$TEST_YASNAC" ]; then
       test_yasnac "$json"; (( val = $? ))
@@ -150,7 +150,9 @@ function test_dir()
     (( val != 1 )) && test_modified_json "$json" "$low" && (( val = $? ))
     [ -z "$low" ] && (( val > 1 )) && (( val < 4 )) && test_modified_json "$json" "1" && (( val = $? ))
 
-    (( val > 0 )) && (( val < 4 )) && rm -f "$json"
+    (( val > 0 )) && (( val < 4 )) && echo "Deleted" | tee -a "$list" && rm -f "$json"
+    (( val == 0 )) && echo "Inconclusive" | tee -a "$list"
+
     echo "" | tee -a "$list"
   done
 }
